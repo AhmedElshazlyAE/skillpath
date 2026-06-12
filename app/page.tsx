@@ -126,14 +126,14 @@ export default function Home() {
 
       <div
         ref={pageRef}
-        className="relative z-10 mx-auto w-full max-w-3xl px-4 py-16 md:py-20"
+        className="relative z-10 mx-auto w-full max-w-3xl px-4 py-8 md:py-10 lg:py-12"
         style={{ marginInline: "auto", maxWidth: "48rem", width: "100%" }}
       >
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="text-center mb-12"
+          className="text-center mb-6"
         >
           <span
             className="gradient-text text-2xl font-black tracking-tight"
@@ -153,7 +153,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-center mb-14"
+              className="text-center mb-7 md:mb-8"
             >
               <h1 className="whitespace-normal md:whitespace-nowrap text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 leading-[1.15]">
                 <span className="block md:inline">Find Your Path</span>
@@ -173,21 +173,21 @@ export default function Home() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.25 }}
-                className="flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm text-slate-500 mb-8 mt-6"
+                className="mx-auto mt-7 flex max-w-2xl flex-wrap justify-center gap-3 rounded-2xl border border-violet-100 bg-white/75 px-4 py-3 text-sm text-slate-500 shadow-sm shadow-violet-100/50 backdrop-blur"
               >
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 whitespace-nowrap">
                   <span className="flex h-6 w-6 items-center justify-center rounded-full bg-violet-100 text-violet-600 text-xs">
                     {"\u2713"}
                   </span>
                   100+ Skills Tracked
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 whitespace-nowrap">
                   <span className="flex h-6 w-6 items-center justify-center rounded-full bg-violet-100 text-violet-600 text-xs">
                     {"\u2713"}
                   </span>
                   AI-Powered Matching
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 whitespace-nowrap">
                   <span className="flex h-6 w-6 items-center justify-center rounded-full bg-violet-100 text-violet-600 text-xs">
                     {"\u2713"}
                   </span>
@@ -224,7 +224,7 @@ export default function Home() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -30 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="mt-12 md:mt-14"
+            className="mt-0"
           >
             {step === 1 && (
               <Step1
@@ -254,7 +254,7 @@ export default function Home() {
           </motion.div>
         </AnimatePresence>
 
-        <p className="text-center text-slate-400 text-xs mt-16 pb-8">
+        <p className="text-center text-slate-400 text-xs mt-8 pb-5">
           Powered by Google Gemini &middot; Free forever &middot; No login required
         </p>
       </div>
@@ -266,7 +266,7 @@ function StepIndicator({ currentStep }: { currentStep: 1 | 2 | 3 }) {
   const labels = ["Your Skills", "Choose Path", "Roadmap"]
 
   return (
-    <div className="mx-auto mb-2 max-w-lg">
+    <div className="mx-auto mb-7 max-w-xl md:mb-8">
       <div className="flex items-center justify-center">
         {labels.map((label, index) => {
           const stepNumber = (index + 1) as 1 | 2 | 3
@@ -318,7 +318,7 @@ type Step1Props = {
 
 function Step1({ skills, onSkillsChange, isAnalyzing, onAnalyze }: Step1Props) {
   return (
-    <div className="bg-white rounded-3xl border border-violet-100 shadow-lg shadow-violet-100/50 p-8">
+    <div className="mx-auto max-w-2xl bg-white rounded-3xl border border-violet-100 shadow-lg shadow-violet-100/50 p-6 md:p-8">
       <h2 className="text-xl font-bold text-slate-900">
         What skills do you have?
       </h2>

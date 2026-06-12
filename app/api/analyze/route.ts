@@ -9,6 +9,7 @@ class MissingGeminiKeyError extends Error {}
 
 type GeminiResponse = {
   candidates?: {
+    finishReason?: string
     content?: {
       parts?: {
         text?: string
@@ -42,8 +43,12 @@ async function generateGeminiJson(prompt: string) {
       body: JSON.stringify({
         contents: [{ parts: [{ text: prompt }] }],
         generationConfig: {
-          maxOutputTokens: 1024,
+          maxOutputTokens: 4096,
           temperature: 0.5,
+          responseMimeType: "application/json",
+          thinkingConfig: {
+            thinkingBudget: 0,
+          },
         },
       }),
     })
@@ -62,12 +67,21 @@ async function generateGeminiJson(prompt: string) {
     }
 
     const data = (await res.json()) as GeminiResponse
+    const candidate = data.candidates?.[0]
+
+    if (candidate?.finishReason === "MAX_TOKENS") {
+      throw new Error("Gemini response was truncated")
+    }
+
     const text =
-      data.candidates?.[0]?.content?.parts
+      candidate?.content?.parts
         ?.map((part) => part.text ?? "")
         .join("") ?? ""
+    const jsonText = stripJsonFences(text)
 
-    return JSON.parse(stripJsonFences(text))
+    if (!jsonText) throw new Error("Gemini returned an empty response")
+
+    return JSON.parse(jsonText)
   }
 
   throw new GeminiBusyError("AI is busy")
