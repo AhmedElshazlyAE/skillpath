@@ -142,7 +142,7 @@ export default function SkillInput({ skills, onChange }: SkillInputProps) {
                 className="hover:text-violet-900 leading-none"
                 aria-label={`Remove ${skill}`}
               >
-                ×
+                &times;
               </button>
             </motion.span>
           ))}
@@ -179,7 +179,7 @@ export default function SkillInput({ skills, onChange }: SkillInputProps) {
       )}
 
       <p className="text-xs text-slate-400 mt-1">
-        Press Enter or comma to add · Search from 100+ skills · Max 20
+        Press Enter or comma to add &middot; Search from 100+ skills &middot; Max 20
       </p>
     </div>
   )

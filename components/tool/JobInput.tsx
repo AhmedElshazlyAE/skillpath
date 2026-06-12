@@ -154,7 +154,7 @@ export default function JobInput({
               Generating roadmap...
             </span>
           ) : (
-            "Generate My Roadmap →"
+            "Generate My Roadmap \u2192"
           )}
         </button>
       </div>

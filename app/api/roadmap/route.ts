@@ -111,7 +111,7 @@ Use only completely free resources: freeCodeCamp, The Odin Project,
 CS50, MIT OpenCourseWare, Coursera (audit mode), edX (audit mode),
 official documentation, YouTube channels.
 
-Return ONLY raw JSON — no markdown, no code fences:
+Return ONLY raw JSON - no markdown, no code fences:
 {
   "targetRole": "string",
   "totalDurationWeeks": 20,
@@ -151,7 +151,7 @@ Include 8 to 12 steps. Be specific and practical.`
 
     if (error instanceof GeminiBusyError) {
       return NextResponse.json(
-        { error: "AI is busy — retry in 1 minute" },
+        { error: "AI is busy \u2014 retry in 1 minute" },
         { status: 429 }
       )
     }

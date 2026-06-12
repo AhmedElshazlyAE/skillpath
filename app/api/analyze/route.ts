@@ -91,11 +91,11 @@ export async function POST(request: Request) {
 ${skills.join(", ")}.
 
 Analyze their profile and return a granular breakdown of which specific
-tech roles they are suited for. Be very specific — not just 'Data Science'
+tech roles they are suited for. Be very specific - not just 'Data Science'
 but 'Data Analyst', 'ML Engineer', 'Data Engineer', 'BI Developer' etc.
 as separate entries.
 
-Return ONLY raw JSON — no markdown, no code fences, nothing else:
+Return ONLY raw JSON - no markdown, no code fences, nothing else:
 {
   "matches": [
     {
@@ -111,8 +111,8 @@ Return ONLY raw JSON — no markdown, no code fences, nothing else:
 Rules:
 - Return 6 to 10 matches sorted by matchPercent descending
 - Only include roles with matchPercent >= 15
-- Be honest — if they have no relevant skills for a field, exclude it
-- Be granular — multiple specific sub-roles per field is good
+- Be honest - if they have no relevant skills for a field, exclude it
+- Be granular - multiple specific sub-roles per field is good
 - missingSkills: the 3 most important missing skills for that role`
 
     const data = await generateGeminiJson(prompt)
@@ -128,7 +128,7 @@ Rules:
 
     if (error instanceof GeminiBusyError) {
       return NextResponse.json(
-        { error: "AI is busy — retry in 1 minute" },
+        { error: "AI is busy \u2014 retry in 1 minute" },
         { status: 429 }
       )
     }

@@ -224,7 +224,7 @@ function StepIndicator({ currentStep }: { currentStep: 1 | 2 | 3 }) {
                         : "bg-slate-100 text-slate-400"
                   }`}
                 >
-                  {isDone ? "✓" : stepNumber}
+                  {isDone ? "\u2713" : stepNumber}
                 </div>
                 <span className="text-xs text-slate-500 whitespace-nowrap">
                   {label}
@@ -282,7 +282,7 @@ function Step1({ skills, onSkillsChange, isAnalyzing, onAnalyze }: Step1Props) {
             Analyzing your skills...
           </span>
         ) : (
-          "Analyze My Profile →"
+          "Analyze My Profile \u2192"
         )}
       </button>
 

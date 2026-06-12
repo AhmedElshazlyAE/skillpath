@@ -9,7 +9,7 @@ const sora = Sora({
 })
 
 export const metadata: Metadata = {
-  title: "SkillPath — Find Your Tech Career Path",
+  title: "SkillPath \u2014 Find Your Tech Career Path",
   description:
     "Enter your skills and get a personalized AI-powered career roadmap in seconds. No login required.",
 }
