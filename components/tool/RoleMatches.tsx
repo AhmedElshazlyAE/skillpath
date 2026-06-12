@@ -17,6 +17,8 @@ function getBadgeClass(matchPercent: number) {
   return "bg-slate-100 text-slate-500"
 }
 
+const VIBRANT_GRADIENT = "linear-gradient(135deg, #7C3AED, #a855f7)"
+
 export default function RoleMatches({
   matches,
   onSelectRole,
@@ -64,7 +66,8 @@ export default function RoleMatches({
 
               <div className="w-full bg-violet-50 rounded-full h-1.5 mt-2 overflow-hidden">
                 <motion.div
-                  className="h-full gradient-bg rounded-full"
+                  className="h-full rounded-full"
+                  style={{ background: VIBRANT_GRADIENT }}
                   initial={{ width: 0 }}
                   animate={{ width: `${match.matchPercent}%` }}
                   transition={{

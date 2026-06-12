@@ -118,7 +118,7 @@ export default function SkillInput({ skills, onChange }: SkillInputProps) {
     <div className="relative">
       <div
         onClick={() => inputRef.current?.focus()}
-        className={`rounded-2xl border border-violet-200 p-3 focus-within:border-violet-500 focus-within:ring-2 focus-within:ring-violet-100 transition-all duration-200 flex flex-wrap gap-2 items-center cursor-text ${
+        className={`rounded-2xl border border-violet-200 p-4 focus-within:border-violet-500 focus-within:ring-2 focus-within:ring-violet-100 transition-all duration-200 flex flex-wrap gap-2 items-center cursor-text ${
           isFull ? "bg-slate-50 opacity-70 cursor-not-allowed" : "bg-white"
         }`}
       >

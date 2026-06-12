@@ -15,6 +15,9 @@ type FetchJobResponse = {
   error?: string
 }
 
+const VIBRANT_GRADIENT = "linear-gradient(135deg, #7C3AED, #a855f7)"
+const MUTED_GRADIENT = "linear-gradient(135deg, #c4b5fd, #d8b4fe)"
+
 export default function JobInput({
   value,
   onChange,
@@ -74,9 +77,10 @@ export default function JobInput({
           <button
             type="button"
             onClick={() => setActiveTab("url")}
+            style={activeTab === "url" ? { background: VIBRANT_GRADIENT } : undefined}
             className={
               activeTab === "url"
-                ? "gradient-bg text-white rounded-full px-4 py-1.5 text-sm"
+                ? "text-white rounded-full px-4 py-1.5 text-sm"
                 : "text-slate-500 text-sm px-4 py-1.5"
             }
           >
@@ -85,9 +89,14 @@ export default function JobInput({
           <button
             type="button"
             onClick={() => setActiveTab("description")}
+            style={
+              activeTab === "description"
+                ? { background: VIBRANT_GRADIENT }
+                : undefined
+            }
             className={
               activeTab === "description"
-                ? "gradient-bg text-white rounded-full px-4 py-1.5 text-sm"
+                ? "text-white rounded-full px-4 py-1.5 text-sm"
                 : "text-slate-500 text-sm px-4 py-1.5"
             }
           >
@@ -146,7 +155,10 @@ export default function JobInput({
           type="button"
           onClick={onSubmit}
           disabled={value.trim() === "" || isLoading}
-          className="w-full gradient-bg text-white font-semibold rounded-xl py-3.5 text-sm mt-5 hover:opacity-90 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed"
+          style={{
+            background: value.trim() === "" ? MUTED_GRADIENT : VIBRANT_GRADIENT,
+          }}
+          className="w-full text-white font-semibold rounded-xl py-3.5 text-sm mt-5 hover:opacity-90 transition-opacity disabled:cursor-not-allowed"
         >
           {isLoading ? (
             <span className="flex items-center justify-center gap-2">

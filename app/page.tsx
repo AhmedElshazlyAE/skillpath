@@ -8,6 +8,15 @@ import RoadmapOutput from "@/components/tool/RoadmapOutput"
 import RoleMatches from "@/components/tool/RoleMatches"
 import SkillInput from "@/components/tool/SkillInput"
 
+const VIBRANT_GRADIENT = "linear-gradient(135deg, #7C3AED, #a855f7)"
+const MUTED_GRADIENT = "linear-gradient(135deg, #c4b5fd, #d8b4fe)"
+const GRADIENT_TEXT_STYLE = {
+  background: VIBRANT_GRADIENT,
+  WebkitBackgroundClip: "text",
+  WebkitTextFillColor: "transparent",
+  backgroundClip: "text",
+}
+
 export default function Home() {
   const [step, setStep] = useState<1 | 2 | 3>(1)
   const [skills, setSkills] = useState<string[]>([])
@@ -99,17 +108,29 @@ export default function Home() {
 
   return (
     <main className="relative min-h-screen bg-white overflow-hidden">
-      <div className="fixed inset-x-0 top-0 h-56 bg-gradient-to-b from-violet-50/80 to-transparent pointer-events-none" />
-      <div className="fixed inset-x-0 bottom-0 h-48 bg-gradient-to-t from-purple-50/60 to-transparent pointer-events-none" />
+      <div
+        className="fixed top-[-150px] right-[-150px] w-[500px] h-[500px] rounded-full blur-[100px] opacity-20 pointer-events-none"
+        style={{ background: "#a855f7" }}
+      />
+      <div
+        className="fixed bottom-[-150px] left-[-150px] w-[450px] h-[450px] rounded-full blur-[100px] opacity-15 pointer-events-none"
+        style={{ background: "#7C3AED" }}
+      />
 
-      <div ref={pageRef} className="relative z-10 max-w-2xl mx-auto px-4 py-10">
+      <div
+        ref={pageRef}
+        className="relative z-10 max-w-3xl mx-auto px-4 py-16 md:py-20"
+      >
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="text-center mb-8"
+          className="text-center mb-12"
         >
-          <span className="gradient-text text-2xl font-black tracking-tight">
+          <span
+            className="gradient-text text-2xl font-black tracking-tight"
+            style={GRADIENT_TEXT_STYLE}
+          >
             SkillPath
           </span>
           <p className="text-slate-400 text-xs mt-1 font-medium uppercase tracking-widest">
@@ -124,13 +145,16 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-center mb-10"
+              className="text-center mb-14"
             >
-              <h1 className="text-4xl md:text-5xl font-black text-slate-900 leading-tight">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-slate-900 leading-[1.1]">
                 Find Your Path
-                <span className="gradient-text"> in Tech</span>
+                <span className="gradient-text" style={GRADIENT_TEXT_STYLE}>
+                  {" "}
+                  in Tech
+                </span>
               </h1>
-              <p className="text-slate-500 text-lg mt-3 max-w-md mx-auto">
+              <p className="text-slate-500 text-lg md:text-xl mt-5 max-w-lg mx-auto">
                 Enter your skills &mdash; we'll match you to roles and build you
                 a free learning roadmap in seconds.
               </p>
@@ -164,6 +188,7 @@ export default function Home() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -30 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
+            className="mt-10"
           >
             {step === 1 && (
               <Step1
@@ -205,7 +230,7 @@ function StepIndicator({ currentStep }: { currentStep: 1 | 2 | 3 }) {
   const labels = ["Your Skills", "Choose Path", "Roadmap"]
 
   return (
-    <div className="mx-auto max-w-sm">
+    <div className="mx-auto max-w-lg">
       <div className="flex items-center justify-center">
         {labels.map((label, index) => {
           const stepNumber = (index + 1) as 1 | 2 | 3
@@ -214,25 +239,21 @@ function StepIndicator({ currentStep }: { currentStep: 1 | 2 | 3 }) {
 
           return (
             <div key={label} className="contents">
-              <div className="flex flex-col items-center gap-2">
-                <div
-                  className={`flex h-8 w-8 items-center justify-center rounded-full text-sm ${
-                    isDone
-                      ? "bg-emerald-500 text-white"
-                      : isActive
-                        ? "gradient-bg text-white font-bold"
-                        : "bg-slate-100 text-slate-400"
-                  }`}
-                >
-                  {isDone ? "\u2713" : stepNumber}
-                </div>
-                <span className="text-xs text-slate-500 whitespace-nowrap">
-                  {label}
-                </span>
+              <div
+                style={isActive ? { background: VIBRANT_GRADIENT } : undefined}
+                className={`flex h-10 w-10 items-center justify-center rounded-full text-sm ${
+                  isDone
+                    ? "bg-emerald-500 text-white"
+                    : isActive
+                      ? "text-white font-bold shadow-lg shadow-violet-200"
+                      : "bg-slate-100 text-slate-400"
+                }`}
+              >
+                {isDone ? "\u2713" : stepNumber}
               </div>
               {index < labels.length - 1 && (
                 <div
-                  className={`h-px flex-1 mx-2 self-start mt-4 ${
+                  className={`h-[1.5px] flex-1 mx-3 md:mx-4 rounded-full ${
                     currentStep > stepNumber ? "bg-emerald-400" : "bg-slate-200"
                   }`}
                 />
@@ -240,6 +261,13 @@ function StepIndicator({ currentStep }: { currentStep: 1 | 2 | 3 }) {
             </div>
           )
         })}
+      </div>
+      <div className="mt-2.5 grid grid-cols-3 gap-2 text-center">
+        {labels.map((label) => (
+          <span key={label} className="text-xs text-slate-500 whitespace-nowrap">
+            {label}
+          </span>
+        ))}
       </div>
     </div>
   )
@@ -254,11 +282,11 @@ type Step1Props = {
 
 function Step1({ skills, onSkillsChange, isAnalyzing, onAnalyze }: Step1Props) {
   return (
-    <div className="bg-white rounded-2xl border border-violet-100 shadow-sm p-6 mt-6">
+    <div className="bg-white rounded-3xl border border-violet-100 shadow-lg shadow-violet-100/50 p-8">
       <h2 className="text-xl font-bold text-slate-900">
         What skills do you have?
       </h2>
-      <p className="text-slate-500 text-sm mt-1 mb-4">
+      <p className="text-slate-500 text-sm mt-2 mb-6">
         Add skills from the list or type your own.
       </p>
 
@@ -274,7 +302,10 @@ function Step1({ skills, onSkillsChange, isAnalyzing, onAnalyze }: Step1Props) {
         type="button"
         onClick={onAnalyze}
         disabled={skills.length === 0 || isAnalyzing}
-        className="w-full gradient-bg text-white font-semibold rounded-xl py-3.5 text-sm mt-6 hover:opacity-90 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed"
+        style={{
+          background: skills.length === 0 ? MUTED_GRADIENT : VIBRANT_GRADIENT,
+        }}
+        className="w-full text-white font-semibold rounded-xl py-3.5 text-sm mt-6 hover:opacity-90 transition-opacity disabled:cursor-not-allowed"
       >
         {isAnalyzing ? (
           <span className="flex items-center justify-center gap-2">

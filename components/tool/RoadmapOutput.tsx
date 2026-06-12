@@ -22,6 +22,13 @@ const typeStyles: Record<RoadmapStep["type"], string> = {
   project: "bg-orange-50 text-orange-600",
   concept: "bg-slate-100 text-slate-600",
 }
+const VIBRANT_GRADIENT = "linear-gradient(135deg, #7C3AED, #a855f7)"
+const GRADIENT_TEXT_STYLE = {
+  background: VIBRANT_GRADIENT,
+  WebkitBackgroundClip: "text",
+  WebkitTextFillColor: "transparent",
+  backgroundClip: "text",
+}
 
 export default function RoadmapOutput({ roadmap }: RoadmapOutputProps) {
   const [copied, setCopied] = useState(false)
@@ -88,7 +95,10 @@ export default function RoadmapOutput({ roadmap }: RoadmapOutputProps) {
 
       <header className="pr-44">
         <div className="flex flex-wrap items-center gap-3">
-          <h2 className="gradient-text text-2xl font-black">
+          <h2
+            className="gradient-text text-2xl font-black"
+            style={GRADIENT_TEXT_STYLE}
+          >
             {roadmap.targetRole}
           </h2>
           <span className="rounded-full bg-violet-100 px-3 py-1 text-sm font-semibold text-violet-700">
@@ -133,7 +143,10 @@ export default function RoadmapOutput({ roadmap }: RoadmapOutputProps) {
               className="flex gap-4 relative"
             >
               <div className="relative flex flex-col items-center">
-                <div className="w-8 h-8 rounded-full gradient-bg text-white font-bold text-sm flex items-center justify-center flex-shrink-0 z-10">
+                <div
+                  className="w-8 h-8 rounded-full text-white font-bold text-sm flex items-center justify-center flex-shrink-0 z-10"
+                  style={{ background: VIBRANT_GRADIENT }}
+                >
                   {index + 1}
                 </div>
                 {index < roadmap.steps.length - 1 && (
