@@ -107,7 +107,7 @@ export default function Home() {
   }
 
   return (
-    <main className="relative min-h-screen bg-white overflow-hidden">
+    <main className="relative min-h-screen w-full bg-white overflow-x-hidden">
       <div
         className="fixed top-[-150px] right-[-150px] w-[500px] h-[500px] rounded-full blur-[100px] opacity-20 pointer-events-none"
         style={{ background: "#a855f7" }}
@@ -119,7 +119,8 @@ export default function Home() {
 
       <div
         ref={pageRef}
-        className="relative z-10 max-w-3xl mx-auto px-4 py-16 md:py-20"
+        className="relative z-10 mx-auto w-full max-w-3xl px-4 py-16 md:py-20"
+        style={{ marginInline: "auto", maxWidth: "48rem", width: "100%" }}
       >
         <motion.div
           initial={{ opacity: 0, y: -10 }}
@@ -147,9 +148,12 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-center mb-14"
             >
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-slate-900 leading-[1.1]">
-                Find Your Path
-                <span className="gradient-text" style={GRADIENT_TEXT_STYLE}>
+              <h1 className="whitespace-normal md:whitespace-nowrap text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 leading-[1.15]">
+                <span className="block md:inline">Find Your Path</span>
+                <span
+                  className="block md:inline gradient-text"
+                  style={GRADIENT_TEXT_STYLE}
+                >
                   {" "}
                   in Tech
                 </span>
