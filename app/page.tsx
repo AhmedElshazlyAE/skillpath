@@ -9,7 +9,6 @@ import RoleMatches from "@/components/tool/RoleMatches"
 import SkillInput from "@/components/tool/SkillInput"
 
 const VIBRANT_GRADIENT = "linear-gradient(135deg, #7C3AED, #a855f7)"
-const MUTED_GRADIENT = "linear-gradient(135deg, #c4b5fd, #d8b4fe)"
 const GRADIENT_TEXT_STYLE = {
   background: VIBRANT_GRADIENT,
   WebkitBackgroundClip: "text",
@@ -109,12 +108,20 @@ export default function Home() {
   return (
     <main className="relative min-h-screen w-full bg-white overflow-x-hidden">
       <div
-        className="fixed top-[-150px] right-[-150px] w-[500px] h-[500px] rounded-full blur-[100px] opacity-20 pointer-events-none"
+        className="fixed top-[-120px] left-[-120px] w-[350px] h-[350px] rounded-full blur-[90px] opacity-[0.12] pointer-events-none"
         style={{ background: "#a855f7" }}
       />
       <div
-        className="fixed bottom-[-150px] left-[-150px] w-[450px] h-[450px] rounded-full blur-[100px] opacity-15 pointer-events-none"
+        className="fixed top-[-120px] right-[-120px] w-[400px] h-[400px] rounded-full blur-[100px] opacity-[0.15] pointer-events-none"
         style={{ background: "#7C3AED" }}
+      />
+      <div
+        className="fixed bottom-[-120px] left-[-120px] w-[400px] h-[400px] rounded-full blur-[100px] opacity-[0.12] pointer-events-none"
+        style={{ background: "#7C3AED" }}
+      />
+      <div
+        className="fixed bottom-[-120px] right-[-120px] w-[350px] h-[350px] rounded-full blur-[90px] opacity-[0.10] pointer-events-none"
+        style={{ background: "#a855f7" }}
       />
 
       <div
@@ -162,6 +169,31 @@ export default function Home() {
                 Enter your skills &mdash; we'll match you to roles and build you
                 a free learning roadmap in seconds.
               </p>
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.25 }}
+                className="flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm text-slate-500 mb-8 mt-6"
+              >
+                <div className="flex items-center gap-2">
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-violet-100 text-violet-600 text-xs">
+                    {"\u2713"}
+                  </span>
+                  100+ Skills Tracked
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-violet-100 text-violet-600 text-xs">
+                    {"\u2713"}
+                  </span>
+                  AI-Powered Matching
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-violet-100 text-violet-600 text-xs">
+                    {"\u2713"}
+                  </span>
+                  100% Free, No Signup
+                </div>
+              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
@@ -192,7 +224,7 @@ export default function Home() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -30 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="mt-10"
+            className="mt-12 md:mt-14"
           >
             {step === 1 && (
               <Step1
@@ -234,7 +266,7 @@ function StepIndicator({ currentStep }: { currentStep: 1 | 2 | 3 }) {
   const labels = ["Your Skills", "Choose Path", "Roadmap"]
 
   return (
-    <div className="mx-auto max-w-lg">
+    <div className="mx-auto mb-2 max-w-lg">
       <div className="flex items-center justify-center">
         {labels.map((label, index) => {
           const stepNumber = (index + 1) as 1 | 2 | 3
@@ -307,9 +339,11 @@ function Step1({ skills, onSkillsChange, isAnalyzing, onAnalyze }: Step1Props) {
         onClick={onAnalyze}
         disabled={skills.length === 0 || isAnalyzing}
         style={{
-          background: skills.length === 0 ? MUTED_GRADIENT : VIBRANT_GRADIENT,
+          background: skills.length === 0 ? "#e2e8f0" : VIBRANT_GRADIENT,
         }}
-        className="w-full text-white font-semibold rounded-xl py-3.5 text-sm mt-6 hover:opacity-90 transition-opacity disabled:cursor-not-allowed"
+        className={`w-full font-semibold rounded-xl py-3.5 text-sm mt-6 transition-all disabled:cursor-not-allowed ${
+          skills.length === 0 ? "text-slate-400" : "text-white hover:opacity-90"
+        }`}
       >
         {isAnalyzing ? (
           <span className="flex items-center justify-center gap-2">
