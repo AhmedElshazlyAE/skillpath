@@ -1,3 +1,6 @@
+***DISCLAIMER: This repository was created with the assistance of ChatGPT/Codex 5.5 Max Reasoning with FULL ACCESS for educational purposes only.
+The code is provided “as is,” without any warranty. It may contain bugs, insecure logic, or incorrect implementations. Do not use it in production without proper review, testing, and security auditing. Use this repository at your own risk***
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
